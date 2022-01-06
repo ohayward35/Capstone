@@ -13,7 +13,7 @@ myheading1 = 'A Really Bad Goodreads.com Knockoff'
 tabtitle = 'dash tabs'
 sourceurl = 'https://dash.plot.ly/dash-core-components/tabs'
 githublink = 'https://git.generalassemb.ly/ohayward35/518-multi-tabs'
-image1='Science Fiction.png'  #from added image of dug in assets folder
+image1='ScienceFiction.jpg'
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -27,6 +27,7 @@ app.config['suppress_callback_exceptions'] = True
 
 app.layout = html.Div([
     html.H1(myheading1),
+    html.Img(src=app.get_asset_url(image1), style={'width': 'auto', 'height': '50%'}),
     dcc.Tabs(id="tabs-example", value='tab-1-example',
             children=[
                 dcc.Tab(label='Book Title', value='tab-1-example'),
@@ -61,8 +62,8 @@ def render_content(tab):
 @app.callback(dash.dependencies.Output('page-1-content', 'children'),
               [dash.dependencies.Input('page-1-dropdown', 'value')])
 def page_1_dropdown(value):
-    return 'You have selected "{}"'.format(value)
-
+    cover = html.Img(src=app.get_asset_url(value), style={'width': '50%', 'height': '50%'}),
+    return cover
 # Tab 2 callback
 @app.callback(Output('page-2-content', 'children'),
               [Input('page-2-radios', 'value')])
