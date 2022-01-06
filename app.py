@@ -26,7 +26,7 @@ app.config['suppress_callback_exceptions'] = True
 ########### Set up the layout
 
 app.layout = html.Div([
-    html.H1(myheading1),
+    html.H1(myheading1, style={'text-align':'center'}),
     html.Img(src=app.get_asset_url(image1), style={'width': 'auto', 'height': '50%'}),
     dcc.Tabs(id="tabs-example", value='tab-1-example',
             children=[
