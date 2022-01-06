@@ -44,7 +44,7 @@ app.layout = html.Div([
         html.A("Data Source", href=sourceurl),
     ], className='twelve columns',
         style={'textAlign':'right',
-                'fontColor':'#FFFFFF',
+                'fontColor':'#58488c',
                 'backgroundColor':'#D3D3D3',})
 ])
 
@@ -62,8 +62,7 @@ def render_content(tab):
 @app.callback(dash.dependencies.Output('page-1-content', 'children'),
               [dash.dependencies.Input('page-1-dropdown', 'value')])
 def page_1_dropdown(value):
-    cover = html.Img(src=app.get_asset_url(value), style={'width': '50%', 'height': '50%'}),
-    return cover
+    return html.Img(src=app.get_asset_url(value), style={'width': '50%', 'height': '50%'}),
 # Tab 2 callback
 @app.callback(Output('page-2-content', 'children'),
               [Input('page-2-radios', 'value')])
@@ -74,7 +73,7 @@ def page_2_radios(value):
 @app.callback(Output('page-3-content', 'children'),
               [Input('page-3-slider', 'value')])
 def page_3_slider(value):
-    return f'You gave a rating of "{str(value)}"'
+    return f'You gave this book a {str(value)}/10'
 
 
 ############ Deploy

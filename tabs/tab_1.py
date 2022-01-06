@@ -10,7 +10,7 @@ tab_1_layout = html.Div([
     html.H1('Science Fiction Corner'),
     html.Div([
         html.Div([
-            html.H6('Select a Book'),
+            html.H6('Select a Book:'),
             dcc.Dropdown(
                 id='page-1-dropdown',
                 options=[

@@ -7,7 +7,7 @@ tab_3_layout = html.Div([
     html.H1('Rating Corner'),
     html.Div([
         html.Div([
-            html.H6('Rate that book:'),
+            html.H6('Rate that Book:'),
             dcc.Slider(
                 id='page-3-slider',
                 min=1,
