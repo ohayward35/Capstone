@@ -9,10 +9,11 @@ from tabs import tab_3
 
 ########### Define your variables ######
 
-myheading1 = 'Plotly Dash -- multiple tabs'
+myheading1 = 'A Really Bad Goodreads.com Knockoff'
 tabtitle = 'dash tabs'
 sourceurl = 'https://dash.plot.ly/dash-core-components/tabs'
-githublink = 'https://github.com/austinlasseter/dash-multitab-simple'
+githublink = 'https://git.generalassemb.ly/ohayward35/518-multi-tabs'
+image1='Science Fiction.png'  #from added image of dug in assets folder
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -28,9 +29,9 @@ app.layout = html.Div([
     html.H1(myheading1),
     dcc.Tabs(id="tabs-example", value='tab-1-example',
             children=[
-                dcc.Tab(label='Tab One', value='tab-1-example'),
-                dcc.Tab(label='Tab Two', value='tab-2-example'),
-                dcc.Tab(label='Tab Three', value='tab-3-example'),
+                dcc.Tab(label='Book Title', value='tab-1-example'),
+                dcc.Tab(label='Book Format', value='tab-2-example'),
+                dcc.Tab(label='Book Rating', value='tab-3-example'),
     ]),
     html.Div([
         html.Div(id='tabs-content-example'),
@@ -72,7 +73,7 @@ def page_2_radios(value):
 @app.callback(Output('page-3-content', 'children'),
               [Input('page-3-slider', 'value')])
 def page_3_slider(value):
-    return f'You have selected "{str(value)}"'
+    return f'You gave a rating of "{str(value)}"'
 
 
 ############ Deploy
