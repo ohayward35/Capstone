@@ -30,6 +30,7 @@ app.config['suppress_callback_exceptions'] = True
 
 app.layout = html.Div([
     html.H1(myheading1, style={'text-align':'center'}),
+    html.H3("Instructions: Please search for a board game in Step 1 and enter that ID into Step 2 along with the number of players you have.", style={'text-align':'center'}),
     html.Img(src=app.get_asset_url(image), style={'width': '100%', 'height': '50%'}),
     dcc.Tabs(id="tabs-example", value='tab-1-example',
             children=[
