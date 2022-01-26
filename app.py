@@ -116,13 +116,6 @@ def error_fig():
 
 # tab 2 callback
 
-# @app.callback(
-#     Output(component_id='my-div', component_property='children'),
-#     [Input(component_id='submit-val2', component_property='n_clicks')],
-#     State('my-id', 'value'),
-#     State('my-id2', 'value')
-# )
-
 @app.callback(Output(component_id ='my-div', component_property = 'children'),
               [Input(component_id = 'submit-val2', component_property = 'n_clicks'),
               State(component_id = 'my-id', component_property = 'value'),
@@ -130,19 +123,21 @@ def error_fig():
               )
 
 def update_output_div(n_clicks,input_value,num_players):
-    if n_clicks == 0:
-        return "Waiting for Input"
-    else:
-        search = str(input_value)
-        r = requests.get('https://api.geekdo.com/xmlapi2/thing?id='+ search.lower()+ '&marketplace=1')
-        root = ET.fromstring(r.content)
-        is_between = int(root[0].findall('minplayers')[0].attrib['value']) <= int(num_players) <= int(root[0].findall('maxplayers')[0].attrib['value'])
-        if is_between == True:
-            return "You have enough players!"
+    try:
+        if n_clicks == 0:
+            return "Waiting for Input"
         else:
-            return "You cannot play this game with this many people."
-        return root[0].findall('description').text
-
+            search = str(input_value)
+            r = requests.get('https://api.geekdo.com/xmlapi2/thing?id='+ search.lower()+ '&marketplace=1')
+            root = ET.fromstring(r.content)
+            is_between = int(root[0].findall('minplayers')[0].attrib['value']) <= int(num_players) <= int(root[0].findall('maxplayers')[0].attrib['value'])
+            if is_between == True:
+                return "You have enough players!"
+            else:
+                return "You cannot play this game with this many people."
+            return root[0].findall('description').text
+    except IndexError as error:
+        return "Please try again."
 
 ############ Deploy
 if __name__ == '__main__':
