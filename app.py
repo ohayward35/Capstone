@@ -10,6 +10,7 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 import numpy as np
 
+
 ########### Define your variables ######
 myheading1 = '🎲 Find a Board Game! 🎲'
 tabtitle = 'boardgame'
@@ -61,7 +62,7 @@ def render_content(tab):
 
 @app.callback(Output(component_id ='figure-1', component_property = 'figure'),
                   [Input(component_id = 'submit-val', component_property = 'n_clicks'),
-                  State(component_id = 'input-on-submit', component_property = 'value')],
+                  Input(component_id = 'input-on-submit', component_property = 'value')],
                  )
 
 def update_output(n_clicks, value):
@@ -133,9 +134,9 @@ def update_output_div(n_clicks,input_value,num_players):
             is_between = int(root[0].findall('minplayers')[0].attrib['value']) <= int(num_players) <= int(root[0].findall('maxplayers')[0].attrib['value'])
             if is_between == True:
                 return "You have enough players to play " + root[0].findall('name')[0].attrib['value'] +"!"
+                return "Description: " + root[0].findall('description')[0]
             else:
                 return "You cannot play " + root[0].findall('name')[0].attrib['value'] + " with this many people."
-            return root[0].findall('description').text
     except IndexError as error:
         return "Please try again."
 
