@@ -117,12 +117,18 @@ def error_fig():
 
 # tab 2 callback
 
-@app.callback(
-    Output(component_id='my-div', component_property='children'),
-    [Input(component_id='submit-val2', component_property='n_clicks')],
-    State('my-id', 'value'),
-    State('my-id2', 'value')
-)
+# @app.callback(
+#     Output(component_id='my-div', component_property='children'),
+#     [Input(component_id='submit-val2', component_property='n_clicks')],
+#     State('my-id', 'value'),
+#     State('my-id2', 'value')
+# )
+
+@app.callback(Output(component_id ='my-div', component_property = 'children'),
+              [Input(component_id = 'submit-val2', component_property = 'n_clicks'),
+              State(component_id = 'my-id', component_property = 'value'),
+              State(component_id = 'my-id2', component_property = 'value')]
+              )
 
 def update_output_div(n_clicks,input_value,num_players):
     if n_clicks == 0:
