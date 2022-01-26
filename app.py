@@ -15,7 +15,7 @@ myheading1 = '🎲 Find a Board Game! 🎲'
 tabtitle = 'boardgame'
 sourceurl = 'https://www.grammarly.com/blog/16-surprisingly-funny-palindromes/'
 githublink = 'https://git.generalassemb.ly/ohayward35/20-Capstone-Hayward.git'
-image='image2.png'
+image='image3.jpg'
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -29,7 +29,7 @@ app.config['suppress_callback_exceptions'] = True
 
 app.layout = html.Div([
     html.H1(myheading1, style={'text-align':'center'}),
-    html.Img(src=app.get_asset_url(image), style={'width': 'auto', 'height': '50%'}),
+    html.Img(src=app.get_asset_url(image), style={'width': '100%', 'height': '50%'}),
     dcc.Tabs(id="tabs-example", value='tab-1-example',
             children=[
                 dcc.Tab(label="Search for a Board Game ID", value='tab-1-example'),
