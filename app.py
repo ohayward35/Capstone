@@ -5,10 +5,11 @@ import plotly.graph_objs as go
 from tabs import tab_1
 from tabs import tab_2
 from dash.dependencies import Input, Output, State
-import requests
+import requests, io
 import xml.etree.ElementTree as ET
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 ########### Define your variables ######
@@ -33,8 +34,8 @@ app.layout = html.Div([
     html.Img(src=app.get_asset_url(image), style={'width': '100%', 'height': '50%'}),
     dcc.Tabs(id="tabs-example", value='tab-1-example',
             children=[
-                dcc.Tab(label="Search for a Board Game ID", value='tab-1-example'),
-                dcc.Tab(label="Is it a Match? ", value='tab-2-example'),
+                dcc.Tab(label="Step 1", value='tab-1-example'),
+                dcc.Tab(label="Step 2", value='tab-2-example'),
     ]),
     html.Div([
         html.Div(id='tabs-content-example'),
@@ -95,7 +96,28 @@ def scrape_bbg(value):
                     cells=dict(align=['left'],
                                values=games_df.T.values)
                  )
-    fig = go.Figure([data])
+    layout = go.Layout(
+    autosize=True,
+    width=666,
+    height=1000,
+
+    xaxis= go.layout.XAxis(linecolor = 'black',
+                          linewidth = 1,
+                          mirror = True),
+
+    yaxis= go.layout.YAxis(linecolor = 'black',
+                          linewidth = 1,
+                          mirror = True),
+
+    margin=go.layout.Margin(
+        l=0,
+        r=0,
+        b=0,
+        t=0,
+        pad = 4
+        )
+    )
+    fig = go.Figure([data], layout=layout)
     return fig
 
 def base_fig():
@@ -104,7 +126,26 @@ def base_fig():
                     cells=dict(align=['left'],
                                values=[['waiting for data'],[1]])
                  )
-    fig = go.Figure([data])
+    layout = go.Layout(
+    autosize=True,
+    width=666,
+    height=1000,
+    xaxis= go.layout.XAxis(linecolor = 'black',
+                          linewidth = 1,
+                          mirror = True),
+
+    yaxis= go.layout.YAxis(linecolor = 'black',
+                          linewidth = 1,
+                          mirror = True),
+    margin=go.layout.Margin(
+        l=0,
+        r=0,
+        b=0,
+        t=0,
+        pad = 4
+        )
+    )
+    fig = go.Figure([data], layout=layout)
     return fig
 def error_fig():
     data=go.Table(columnwidth = [200,200],
@@ -113,7 +154,28 @@ def error_fig():
                                values=[['No Results Found'],
                                        ['No Results Found']])
                  )
-    fig = go.Figure([data])
+    layout = go.Layout(
+    autosize=True,
+    width=666,
+    height=1000,
+
+    xaxis= go.layout.XAxis(linecolor = 'black',
+                          linewidth = 1,
+                          mirror = True),
+
+    yaxis= go.layout.YAxis(linecolor = 'black',
+                          linewidth = 1,
+                          mirror = True),
+
+    margin=go.layout.Margin(
+        l=0,
+        r=0,
+        b=0,
+        t=0,
+        pad = 4
+        )
+    )
+    fig = go.Figure([data], layout=layout)
     return fig
 
 # tab 2 callback
@@ -123,7 +185,6 @@ def error_fig():
               [State(component_id = 'my-id', component_property = 'value'),
               State(component_id = 'my-id2', component_property = 'value')]
               )
-
 def update_output_div(n_clicks,input_value,num_players):
     try:
         if n_clicks == 0:
@@ -134,8 +195,10 @@ def update_output_div(n_clicks,input_value,num_players):
             root = ET.fromstring(r.content)
             is_between = int(root[0].findall('minplayers')[0].attrib['value']) <= int(num_players) <= int(root[0].findall('maxplayers')[0].attrib['value'])
             if is_between == True:
-                return "You have enough players to play " + root[0].findall('name')[0].attrib['value']
-                # "\n Description: " + root[0].findall('description')[0]
+                a = "You have enough players to play " + root[0].findall('name')[0].attrib['value'] + "!"
+                b = " Description: " + root[0].findall('description')[0].text + "."
+                url = str(root[0].findall('image')[0].text)
+                return a + "\n" + b
             else:
                 return "You cannot play " + root[0].findall('name')[0].attrib['value'] + " with this many people."
     except IndexError as error:
