@@ -197,7 +197,6 @@ def update_output_div(n_clicks,input_value,num_players):
             if is_between == True:
                 a = "You have enough players to play " + root[0].findall('name')[0].attrib['value'] + "!"
                 b = " Description: " + root[0].findall('description')[0].text + "."
-                url = str(root[0].findall('image')[0].text)
                 return a + b
             else:
                 c = "You cannot play " + root[0].findall('name')[0].attrib['value'] + " with this many people."
