@@ -132,9 +132,9 @@ def update_output_div(n_clicks,input_value,num_players):
             root = ET.fromstring(r.content)
             is_between = int(root[0].findall('minplayers')[0].attrib['value']) <= int(num_players) <= int(root[0].findall('maxplayers')[0].attrib['value'])
             if is_between == True:
-                return "You have enough players!"
+                return "You have enough players to play " + root[0].findall('name')[0].attrib['value'] +"!"
             else:
-                return "You cannot play this game with this many people."
+                return "You cannot play " + root[0].findall('name')[0].attrib['value'] + " with this many people."
             return root[0].findall('description').text
     except IndexError as error:
         return "Please try again."
