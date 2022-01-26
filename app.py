@@ -14,7 +14,7 @@ import numpy as np
 ########### Define your variables ######
 myheading1 = '🎲 Find a Board Game! 🎲'
 tabtitle = 'boardgame'
-sourceurl = 'https://www.grammarly.com/blog/16-surprisingly-funny-palindromes/'
+sourceurl = 'https://www.boardgamegeek.com/'
 githublink = 'https://git.generalassemb.ly/ohayward35/20-Capstone-Hayward.git'
 image='image3.jpg'
 
@@ -60,10 +60,11 @@ def render_content(tab):
 
 #tab 1 callback
 
-@app.callback(Output(component_id ='figure-1', component_property = 'figure'),
-                  [Input(component_id = 'submit-val', component_property = 'n_clicks'),
-                  State(component_id = 'input-on-submit', component_property = 'value')],
-                 )
+@app.callback(
+    Output(component_id ='figure-1', component_property = 'figure'),
+    [Input(component_id = 'submit-val', component_property = 'n_clicks')],
+    [State(component_id = 'input-on-submit', component_property = 'value')],
+             )
 
 def update_output(n_clicks, value):
     if n_clicks==0:
@@ -117,9 +118,9 @@ def error_fig():
 
 # tab 2 callback
 
-@app.callback(Output(component_id ='my-div', component_property = 'children'),
-              [Input(component_id = 'submit-val2', component_property = 'n_clicks'),
-              State(component_id = 'my-id', component_property = 'value'),
+@app.callback(Output(component_id = 'my-div', component_property = 'children'),
+              [Input(component_id = 'submit-val2', component_property = 'n_clicks')],
+              [State(component_id = 'my-id', component_property = 'value'),
               State(component_id = 'my-id2', component_property = 'value')]
               )
 
