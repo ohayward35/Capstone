@@ -5,7 +5,6 @@ import plotly.graph_objs as go
 from tabs import tab_1
 from tabs import tab_2
 from dash.dependencies import Input, Output, State
-from collections import deque, Counter
 import requests
 import xml.etree.ElementTree as ET
 import pandas as pd
