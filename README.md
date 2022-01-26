@@ -1,11 +1,5 @@
-# Plotly Dash Tutorial
-### How to build an interactive Plotly dashboard
+# Board Game Finder
 
-This tutorial focuses on building a simple dashboard with [Plotly Dash](https://plot.ly/dash).
 
-* You can view the finished app [here](https://dash-multitab-example.herokuapp.com/).
-* Take a moment to read my [Medium post about deploying Dash apps](https://medium.com/@austinlasseter/how-to-deploy-a-simple-plotly-dash-app-to-heroku-622a2216eb73).
-* I also have a gallery of simple Dash apps for learning [here](https://github.com/austinlasseter/plotly_dash_tutorial/blob/master/06%20Heroku%20examples/list%20of%20resources.md).
-* If you'd like to learn even more about Plotly Dash, check out my [tutorial repo](https://github.com/austinlasseter/plotly_dash_tutorial) on github!.
-* Reminder - the `assets` folder contains a file called `favicon.ico` -- you can find and download customized favicons [here](https://www.favicon.cc/). Just replace the current favicon with a new one!
-* Note that Plotly dash apps are best viewed in a modern browser like Mozilla or Chrome.
+This program uses an API request from boardgamegeek.com to take a user input and return a list of games that contain the user input. 
+The user can then use the second tab to enter the ID, adjust the number of people that would like to play and see if the board game can accommodate that number. 
