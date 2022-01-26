@@ -60,11 +60,11 @@ def render_content(tab):
 
 #tab 1 callback
 
-@app.callback(
-    Output('figure-1', 'figure'),
-    [Input('submit-val', 'n_clicks'),
-    State('input-on-submit', 'value')]
-)
+@app.callback(Output(component_id ='figure-1', component_property = 'figure'),
+                  [Input(component_id = 'submit-val', component_property = 'n_clicks')],
+                  State(component_id = 'input-on-submit', component_property = 'value'),
+                 )
+
 def update_output(n_clicks, value):
     if n_clicks==0:
         return base_fig()
