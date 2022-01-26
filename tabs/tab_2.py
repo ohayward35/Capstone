@@ -12,7 +12,7 @@ longtext='''
 
 tab_2_layout = html.Div(children=[
     html.H1(myheading1),
-    html.H6('Please enter the Board Game ID:'),
+    html.H6('Enter the Board Game ID:'),
     dcc.Input(id='my-id', value=initial_value, type='text'),
     html.H6('How Many Players:'),
     dcc.Slider(

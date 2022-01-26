@@ -8,7 +8,7 @@ list_of_images=['GEoD.jfif', 'Foundryside.jpg', 'NetworkEffect.jpg']
 
 tab_1_layout = html.Div([
     html.H1(id='container-button-basic',
-             children='Enter a keyword and press submit:'),
+             children='Search for a Board Game:'),
     html.Div(dcc.Input(id='input-on-submit', type='text')),
     html.Br(),
     html.Button('Submit', id='submit-val', n_clicks=0),
