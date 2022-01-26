@@ -6,9 +6,6 @@ from dash.dependencies import Input, Output
 myheading1='Enter the ID and press submit:'
 initial_value='150658'
 initial_value2='2'
-longtext='''
-        _Hint: Copy and Paste the ID Number:_
-        '''
 
 tab_2_layout = html.Div(children=[
     html.H1(myheading1),

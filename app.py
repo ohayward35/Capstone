@@ -62,8 +62,8 @@ def render_content(tab):
 
 @app.callback(
     Output('figure-1', 'figure'),
-    [Input('submit-val', 'n_clicks')],
-    [State('input-on-submit', 'value')]
+    [Input('submit-val', 'n_clicks'),
+    State('input-on-submit', 'value')]
 )
 def update_output(n_clicks, value):
     if n_clicks==0:
