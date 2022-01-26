@@ -26,7 +26,6 @@ tab_2_layout = html.Div(children=[
         ],className='three columns'),
     html.Div([
         html.Div(id='my-div'),
-        html.Div(id='my-div2')
         ],className='nine columns'),
     ],className='twelve columns'),
     ]

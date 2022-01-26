@@ -5,15 +5,15 @@ import plotly.graph_objs as go
 from tabs import tab_1
 from tabs import tab_2
 from dash.dependencies import Input, Output, State
-import requests, io
+import requests
 import xml.etree.ElementTree as ET
 import pandas as pd
 import numpy as np
 
 
 ########### Define your variables ######
-myheading1 = '🎲 Find a Board Game! 🎲'
-tabtitle = 'boardgame'
+myheading1 = '🎲 Find the Right Board Game for You and Your Friends! 🎲'
+tabtitle = 'BoardGamePicker'
 sourceurl = 'https://www.boardgamegeek.com/'
 githublink = 'https://git.generalassemb.ly/ohayward35/20-Capstone-Hayward.git'
 image='image3.jpg'
@@ -198,9 +198,10 @@ def update_output_div(n_clicks,input_value,num_players):
                 a = "You have enough players to play " + root[0].findall('name')[0].attrib['value'] + "!"
                 b = " Description: " + root[0].findall('description')[0].text + "."
                 url = str(root[0].findall('image')[0].text)
-                return a + "\n" + b
+                return a + b
             else:
-                return "You cannot play " + root[0].findall('name')[0].attrib['value'] + " with this many people."
+                c = "You cannot play " + root[0].findall('name')[0].attrib['value'] + " with this many people."
+                return c
     except IndexError as error:
         return "Please try again."
 
