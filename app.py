@@ -12,10 +12,10 @@ import pandas as pd
 import numpy as np
 
 ########### Define your variables ######
-myheading1 = '🎲 Buy the Perfect Game 🎲'
+myheading1 = '🎲 Find a Board Game! 🎲'
 tabtitle = 'boardgame'
 sourceurl = 'https://www.grammarly.com/blog/16-surprisingly-funny-palindromes/'
-githublink = 'XXXX'
+githublink = 'https://git.generalassemb.ly/ohayward35/20-Capstone-Hayward.git'
 image='image2.png'
 
 ########### Initiate the app
@@ -33,8 +33,8 @@ app.layout = html.Div([
     html.Img(src=app.get_asset_url(image), style={'width': 'auto', 'height': '50%'}),
     dcc.Tabs(id="tabs-example", value='tab-1-example',
             children=[
-                dcc.Tab(label="Find Your Perfect Game's ID", value='tab-1-example'),
-                dcc.Tab(label="Is it a Match?", value='tab-2-example'),
+                dcc.Tab(label="Search for a Board Game ID", value='tab-1-example'),
+                dcc.Tab(label="Is it a Match? ", value='tab-2-example'),
     ]),
     html.Div([
         html.Div(id='tabs-content-example'),
@@ -117,36 +117,26 @@ def error_fig():
 
 # tab 2 callback
 
-def id_players(value):
-    search = str(value)
-    r = requests.get('https://api.geekdo.com/xmlapi2/thing?id='+ search.lower()+ '&marketplace=1')
-    root = ET.fromstring(r.content)
-    description = root[0][8].text
-    return description
-
-def my_function(value):
-    search = str(value)
-    r = requests.get('https://api.geekdo.com/xmlapi2/thing?id='+ search.lower()+ '&marketplace=1')
-    root = ET.fromstring(r.content)
-    #return "Description: " + root[0][8].text
-    return "This game can be played with between " + root[0][10].attrib['value'] + " and " + root[0][11].attrib['value'] + " players!"
-
 @app.callback(
     Output(component_id='my-div', component_property='children'),
     [Input(component_id='submit-val2', component_property='n_clicks')],
-    State('my-id', 'value')
+    State('my-id', 'value'),
+    State('my-id2', 'value')
 )
 
-def update_output_div(n_clicks,input_value):
+def update_output_div(n_clicks,input_value,num_players):
     if n_clicks == 0:
         return "Waiting for Input"
     else:
         search = str(input_value)
         r = requests.get('https://api.geekdo.com/xmlapi2/thing?id='+ search.lower()+ '&marketplace=1')
         root = ET.fromstring(r.content)
-        return "This game can be played with between " + root[0][10].attrib['value'] + " and " + root[0][11].attrib['value'] + " players!"
-        return root[0][8].text
-
+        is_between = int(root[0].findall('minplayers')[0].attrib['value']) <= int(num_players) <= int(root[0].findall('maxplayers')[0].attrib['value'])
+        if is_between == True:
+            return "You have enough players!"
+        else:
+            return "You cannot play this game with this many people."
+        return root[0].findall('description').text
 
 
 ############ Deploy
